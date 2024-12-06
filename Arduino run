@@ -1,0 +1,73 @@
+#include <Servo.h>
+
+Servo servo0;
+Servo servo1;
+Servo servo2;
+Servo servo3;
+Servo servo4;
+Servo servo5;
+
+byte leftJoystickY;
+byte leftJoystickX;
+byte rightJoystickY;
+byte rightJoystickX;
+int leftTrigger;
+//byte rightTrigger;
+
+#define servo0Pin 7
+#define servo1Pin 6
+#define servo2Pin 5
+#define servo3Pin 4
+#define servo4Pin 3
+#define servo5Pin 2
+
+#define light 44
+void setup() {
+  Serial.begin(9600);
+  pinMode(light, OUTPUT);
+
+  servo0.attach(servo0Pin);
+  servo1.attach(servo1Pin);
+  servo2.attach(servo2Pin);
+  servo3.attach(servo3Pin);
+  servo4.attach(servo4Pin);
+  servo5.attach(servo5Pin);
+  
+  servo0.writeMicroseconds(1500);
+  servo1.writeMicroseconds(1500);
+  servo2.writeMicroseconds(1500);
+  servo3.writeMicroseconds(1500);
+  servo4.writeMicroseconds(1500);
+  servo5.writeMicroseconds(1500);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if (Serial.available() == 5) {
+    leftJoystickY = Serial.read();
+    leftJoystickX = Serial.read();
+    rightJoystickY = Serial.read(); 
+    rightJoystickX = Serial.read();
+    leftTrigger = Serial.read();
+    //rightTrigger = Serial.read();
+  }
+  //servo0.writeMicroseconds(leftJoystickY * (3.1373) + 1100);
+
+  servo0.writeMicroseconds(leftJoystickY * (1.56862745098) + 1300);
+  //servo1.writeMicroseconds(rightJoystickY * (1.56862745098) + 1300);
+  
+  servo1.writeMicroseconds(leftJoystickY * (1.56862745098) + 1300);
+  servo2.writeMicroseconds(leftJoystickY * (1.56862745098) + 1300);
+  servo3.writeMicroseconds(leftJoystickY * (1.56862745098) + 1300);
+  servo4.writeMicroseconds(leftJoystickY * (1.56862745098) + 1300);
+  servo5.writeMicroseconds(leftJoystickY * (1.56862745098) + 1300);
+
+  //Serial.write("hi");
+
+  //servo2.writeMicroseconds(leftJoystickX * (1.56862745098) + 1300);
+  /*servo3.writeMicroseconds(rightJoystickX * (1.56862745098) + 1300);
+  servo4.writeMicroseconds(leftJoystickY * (1.56862745098) + 1300);
+  servo5.writeMicroseconds(rightJoystickY * (1.56862745098) + 1300);*/
+  
+  
+}
